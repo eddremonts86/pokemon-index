@@ -1,9 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar app>
-      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title>Application</v-toolbar-title>
-    </v-app-bar>
+    <top-bar-menu />
 
     <v-main>
       <v-container>
@@ -18,8 +15,12 @@
 </template>
 
 <script>
+import { topBarMenu } from "@/domains/application/components";
+
 export default {
   name: "DefaultLayout",
-  data: () => ({ drawer: null }),
+  components: {
+    topBarMenu,
+  },
 };
 </script>
