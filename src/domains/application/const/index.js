@@ -1,2 +1,2 @@
-import { TopMenuItemsConst } from "./TopMenuItems.const";
-export { TopMenuItemsConst };
+import { MenuItemsConst } from "./MenuItemsConst.const";
+export { MenuItemsConst };

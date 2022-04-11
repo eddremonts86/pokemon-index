@@ -1,31 +1,21 @@
 <template>
   <v-app>
-    <top-bar-menu />
+    <top-bar-menu @update-asideMenu="asideMenu = !asideMenu" />
+    <v-navigation-drawer
+      v-model="asideMenu"
+      app
+      temporary
+      class="aside-left-nav"
+    >
+      <asideLeftMenu />
+    </v-navigation-drawer>
     <v-main>
       <v-container>
         <v-row>
-          <v-col cols="2">
-            <v-sheet rounded="lg">
-              <v-list color="transparent">
-                <v-list-item v-for="n in 5" :key="n" link>
-                  <v-list-item-content>
-                    <v-list-item-title> List Item {{ n }} </v-list-item-title>
-                  </v-list-item-content>
-                </v-list-item>
-
-                <v-divider class="my-2"></v-divider>
-
-                <v-list-item link color="grey lighten-4">
-                  <v-list-item-content>
-                    <v-list-item-title> Refresh </v-list-item-title>
-                  </v-list-item-content>
-                </v-list-item>
-              </v-list>
+          <v-col cols="12">
+            <v-sheet min-height="85vh" rounded="lg" class="pa-7">
+              <router-view />
             </v-sheet>
-          </v-col>
-
-          <v-col class="app-content">
-            <v-sheet min-height="70vh" rounded="lg"><router-view /></v-sheet>
           </v-col>
         </v-row>
       </v-container>
@@ -34,11 +24,17 @@
 </template>
 
 <script>
-import { topBarMenu } from "@/domains/application/components";
+import { topBarMenu, asideLeftMenu } from "@/domains/application/components";
 export default {
   name: "AppLayout",
   components: {
     topBarMenu,
+    asideLeftMenu,
+  },
+  data() {
+    return {
+      asideMenu: true,
+    };
   },
 };
 </script>

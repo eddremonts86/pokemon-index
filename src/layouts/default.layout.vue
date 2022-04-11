@@ -1,12 +1,13 @@
 <template>
   <v-app>
     <top-bar-menu />
-
     <v-main>
       <v-container>
         <v-row>
-          <v-col class="app-content">
-            <v-sheet min-height="70vh" rounded="lg"><router-view /></v-sheet>
+          <v-col cols="12">
+            <v-sheet min-height="85vh" rounded="lg" class="pa-7"
+              ><router-view
+            /></v-sheet>
           </v-col>
         </v-row>
       </v-container>

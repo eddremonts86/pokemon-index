@@ -1,3 +1,25 @@
-$white:#fff;
-$black:#000;
-$primaryLight:#ff9933;
+:root {
+   .theme--light{
+       --base-color:#fff
+       --link-color: #3D5A80; 
+       --link-hover-color: #98C1D9; 
+       --link-visited-color: #E0FBFC; 
+       --link-active-color: #98C1D9;
+       --primary-color: #293241;
+       --secondary-color: #3D5A80;
+       --emphasis-color: #EE6C4D;
+       --text-color:#212121; 
+   }
+   .theme--dark{
+       --base-color:#212121
+       --link-color: #3D5A80; 
+       --link-hover-color: #98C1D9; 
+       --link-visited-color: #E0FBFC; 
+       --link-active-color: #98C1D9;
+       --primary-color: #293241;
+       --secondary-color: #3D5A80;
+       --emphasis-color: #EE6C4D;
+       --text-color:#fff;
+   } 
+
+}
