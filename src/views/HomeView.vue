@@ -37,7 +37,7 @@ export default {
   data() {
     return {
       pokemonPerPage: 10,
-      sort: null,
+      sort: [],
     };
   },
   methods: {

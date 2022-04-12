@@ -6,7 +6,7 @@
       md="4"
       lg="3"
       xl="2"
-      v-for="(pokemon, key) in getPokemon"
+      v-for="(pokemon, key) in pokemonSorted"
       :key="key"
     >
       <pokemon-card :pokemon="pokemon" />
@@ -17,6 +17,8 @@
 <script>
 import { pokemonCard } from "../components";
 import { mapActions, mapGetters } from "vuex";
+import _ from "lodash";
+
 export default {
   name: "PokemonList",
   components: {
@@ -27,9 +29,18 @@ export default {
       type: Number,
       default: 20,
     },
+    sort: {
+      type: Array,
+      default: () => [],
+    },
   },
   computed: {
     ...mapGetters(["getPokemon"]),
+    pokemonSorted() {
+      return this.sort === null
+        ? this.getPokemon
+        : this.sortPokemon(this.getPokemon);
+    },
   },
   mounted() {
     this.fetchPokemon({
@@ -39,6 +50,13 @@ export default {
   },
   methods: {
     ...mapActions(["fetchPokemon"]),
+    sortPokemon(pokemon) {
+      const attribute = this.sort.map((e) => e.attribute);
+      const values = this.sort.map((e) => e.value);
+      const sorted = _.orderBy(pokemon, attribute, values);
+      console.log(sorted.map((ele) => ele.name));
+      return sorted;
+    },
   },
   watch: {
     pokemonPerPage(newValue) {

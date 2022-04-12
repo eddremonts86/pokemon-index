@@ -86,11 +86,20 @@ export default {
   },
   methods: {
     updateSort() {
-      let sort = {
-        name: this.sortByName?.length > 0 ? this.sortByName : null,
-        height: this.sortByHeight?.length > 0 ? this.sortByHeight : null,
-        weight: this.sortByWeight?.length > 0 ? this.sortByWeight : null,
-      };
+      let sort = [
+        {
+          attribute: "name",
+          value: this.sortByName?.length > 0 ? this.sortByName : null,
+        },
+        {
+          attribute: "height",
+          value: this.sortByHeight?.length > 0 ? this.sortByHeight : null,
+        },
+        {
+          attribute: "weight",
+          value: this.sortByWeight?.length > 0 ? this.sortByWeight : null,
+        },
+      ].filter((s) => s.value);
       this.$emit("update:sort", sort);
     },
   },
