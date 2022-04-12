@@ -8,8 +8,7 @@
       ></v-progress-linear>
     </template>
 
-    <v-img height="250" :src="poke.img"></v-img>
-
+    <v-img height="250" :src="poke.img" :lazy-src="imgDefault"></v-img>
     <v-card-title>{{ poke.name }}</v-card-title>
     <v-card-subtitle>
       <span> <b>Height:</b> {{ poke.height }} </span> <br />
@@ -38,7 +37,7 @@
 </template>
 
 <script>
-import { getByUrl } from "@/helpers/axiosConnection";
+const imgDefaultUrl = "/images/default-pokemon.png";
 
 export default {
   name: "PokemonCard",
@@ -56,8 +55,7 @@ export default {
   },
   computed: {
     poke() {
-      const { name, height, weight, abilities, sprites } =
-        this.pokemonExtraData;
+      const { name, height, weight, abilities, sprites } = this.pokemon;
       return {
         name,
         height,
@@ -66,19 +64,9 @@ export default {
         img: sprites?.other["official-artwork"]?.front_default,
       };
     },
-  },
-  mounted() {
-    this.loading = true;
-    getByUrl(`${this.pokemon.url}`)
-      .then((response) => {
-        this.pokemonExtraData = response.data;
-      })
-      .catch((error) => {
-        this.pokemonExtraData = { error };
-      })
-      .finally(() => {
-        this.loading = false;
-      });
+    imgDefault() {
+      return imgDefaultUrl;
+    },
   },
 };
 </script>

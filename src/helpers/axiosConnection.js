@@ -31,3 +31,7 @@ export const get = (endpoint) => {
 export const getByUrl = (url) => {
   return Axios.get(url, axiosConf);
 };
+
+export const all = async (request) => {
+  return await Axios.all(request);
+};

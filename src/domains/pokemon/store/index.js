@@ -1,4 +1,5 @@
 import { getByFilter, getByUrl } from "@/helpers/axiosConnection";
+import { fetchPokemonInformation } from "../utils/index";
 
 const pokemonStore = {
   state: {
@@ -29,7 +30,8 @@ const pokemonStore = {
         commit("resetStore");
         const response = await getByFilter("pokemon", filters);
         const { results, previous, next } = response.data;
-        commit("setPokemon", results);
+        const pokemon = await fetchPokemonInformation(results);
+        commit("setPokemon", pokemon);
         commit("setPokemonPreviousPageUrl", previous);
         commit("setPokemonNextPageUrl", next);
       } catch (error) {
@@ -41,7 +43,8 @@ const pokemonStore = {
         commit("resetStore");
         const response = await getByUrl(pageUrl);
         const { results, previous, next } = response.data;
-        commit("setPokemon", results);
+        const pokemon = await fetchPokemonInformation(results);
+        commit("setPokemon", pokemon);
         commit("setPokemonPreviousPageUrl", previous);
         commit("setPokemonNextPageUrl", next);
       } catch (error) {

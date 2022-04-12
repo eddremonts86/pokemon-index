@@ -54,7 +54,6 @@ export default {
       const attribute = this.sort.map((e) => e.attribute);
       const values = this.sort.map((e) => e.value);
       const sorted = _orderBy(pokemon, attribute, values);
-      console.log(sorted.map((ele) => ele.name));
       return sorted;
     },
   },
