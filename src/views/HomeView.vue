@@ -12,9 +12,14 @@
       :elementsPerPage="pokemonPerPage"
       @update:pokemon-per-page="updatePokemonPerPage"
       @update:sort="updateSort"
+      @update:filter="updateFilter"
     />
     <v-col cols="12">
-      <pokemonList :pokemon-per-page="pokemonPerPage" :sort="sort" />
+      <pokemonList
+        :pokemon-per-page="pokemonPerPage"
+        :sort="sort"
+        :filter="filter"
+      />
     </v-col>
     <v-col cols="12" class="radio-xl pokemon-header d-flex justify-end">
       <pokemon-pagination />
@@ -38,6 +43,7 @@ export default {
     return {
       pokemonPerPage: 10,
       sort: [],
+      filter: null,
     };
   },
   methods: {
@@ -46,6 +52,9 @@ export default {
     },
     updateSort(sort) {
       this.sort = sort;
+    },
+    updateFilter(filter) {
+      this.filter = filter;
     },
   },
 };

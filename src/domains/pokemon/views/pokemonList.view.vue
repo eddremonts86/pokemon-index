@@ -33,6 +33,10 @@ export default {
       type: Array,
       default: () => [],
     },
+    filter: {
+      type: String,
+      default: null,
+    },
   },
   computed: {
     ...mapGetters(["getPokemon"]),
@@ -54,7 +58,19 @@ export default {
       const attribute = this.sort.map((e) => e.attribute);
       const values = this.sort.map((e) => e.value);
       const sorted = _orderBy(pokemon, attribute, values);
+      if (this.filter) {
+        return this.filterPokemon(sorted);
+      }
       return sorted;
+    },
+    filterPokemon(sorted) {
+      return sorted.filter(
+        (pokemon) =>
+          pokemon.name.toLowerCase().includes(this.filter.toLowerCase()) ||
+          pokemon.abilities.some(({ ability }) =>
+            ability.name.toLowerCase().includes(this.filter.toLowerCase())
+          )
+      );
     },
   },
   watch: {
