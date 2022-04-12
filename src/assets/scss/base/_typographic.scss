@@ -1,11 +1,16 @@
-@import './colors';
-
-h1,h2,h3,h4,h5,h6,p{
+h1, h2, h3, h4, h5, h6, p,.small{
     margin: 0;
     padding: 0;
     color:var(--text-color)
 }
 .small{
-    font-size: .8em;
+    font-size: $font-size-xxs;
+     font-weight: $font-weight-xxs;
+    line-height: $line-height-xxs;
 }
 
+h1 {
+    font-size: $font-size-xlg;
+    font-weight: $font-weight-xlg;
+    line-height: $line-height-xxs;
+} 

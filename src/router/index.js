@@ -15,10 +15,10 @@ const routes = [
     },
   },
   {
-    path: "/about",
-    name: "about",
+    path: "/pokemon",
+    name: "pokemon",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
+      import(/* webpackChunkName: "about" */ "../views/PokemonView.vue"),
     meta: {
       layout: "applicationLayout",
       title: "About Pokemon",

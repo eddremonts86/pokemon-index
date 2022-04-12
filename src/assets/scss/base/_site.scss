@@ -1,4 +1,3 @@
-@import './colors';
 a{
     font-size: 1.2em;
     text-decoration: none;
@@ -14,7 +13,6 @@ a{
         color: var(--link-active-color);
     }
 }
-
 .aside-left-nav{
     background-color: var(--base-color);
     color: var(--text-color);

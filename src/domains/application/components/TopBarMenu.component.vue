@@ -16,13 +16,7 @@
       </template>
       <v-spacer></v-spacer>
       <v-responsive>
-        <v-text-field
-          dense
-          flat
-          hide-details
-          rounded
-          solo-inverted
-        ></v-text-field>
+        <pokemon-search />
       </v-responsive>
     </v-container>
   </v-app-bar>
@@ -30,8 +24,10 @@
 
 <script>
 import { MenuItemsConst } from "../const";
+import { pokemonSearch } from "@/domains/pokemon/components";
 export default {
   name: "TopBarMenu",
+  components: { pokemonSearch },
   computed: {
     menuItems() {
       return MenuItemsConst;

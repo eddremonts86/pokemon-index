@@ -8,7 +8,13 @@
       ></v-progress-linear>
     </template>
 
-    <v-img height="250" :src="poke.img" :lazy-src="imgDefault"></v-img>
+    <v-img
+      height="250"
+      :src="poke.img"
+      :lazy-src="imgDefault"
+      @click="goTo(pokemon.name)"
+      class="cursor-pointer"
+    ></v-img>
     <v-card-title>{{ poke.name }}</v-card-title>
     <v-card-subtitle>
       <span> <b>Height:</b> {{ poke.height }} </span> <br />
@@ -22,7 +28,7 @@
     <v-card-text>
       <v-chip
         class="ma-1"
-        color="primary"
+        color="red darken-4"
         v-for="(ability, abilityKey) in poke.abilities"
         :key="abilityKey"
       >
@@ -31,13 +37,15 @@
     </v-card-text>
 
     <v-card-actions class="pa-5">
-      <v-btn color="primary" block> Know more! </v-btn>
+      <v-btn color="primary" block @click="goTo(pokemon.name)">
+        Know more!
+      </v-btn>
     </v-card-actions>
   </v-card>
 </template>
 
 <script>
-const imgDefaultUrl = "/images/default-pokemon.png";
+const imgDefaultUrl = "/images/loading.gif";
 
 export default {
   name: "PokemonCard",
@@ -68,5 +76,15 @@ export default {
       return imgDefaultUrl;
     },
   },
+  methods: {
+    goTo(name) {
+      this.$router.push("/pokemon?name=" + name);
+    },
+  },
 };
 </script>
+<style lang="scss" scoped>
+.cursor-pointer {
+  cursor: pointer;
+}
+</style>

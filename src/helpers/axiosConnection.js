@@ -10,10 +10,10 @@ export const axiosConf = () => {
   };
 };
 
-export const getById = (endpoint, id) => {
+export const getByAttribute = (endpoint, attribute) => {
   const { urlBase } = globalEnv;
-  const url = `${urlBase + endpoint}/${id}`;
-  return Axios.get(url, axiosConf, id);
+  const url = `${urlBase + endpoint}/${attribute}`;
+  return Axios.get(url, axiosConf);
 };
 
 export const getByFilter = (endpoint, filter) => {
