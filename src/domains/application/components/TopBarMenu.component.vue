@@ -6,7 +6,7 @@
       </v-btn>
       <template v-for="link in menuItems">
         <router-link
-          :key="link"
+          :key="link.routerName"
           link
           class="hidden-sm-and-down mx-2"
           :to="{ name: link.routeName }"
