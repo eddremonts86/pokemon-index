@@ -17,7 +17,7 @@
 <script>
 import { pokemonCard } from "../components";
 import { mapActions, mapGetters } from "vuex";
-import _ from "lodash";
+import { orderBy as _orderBy } from "lodash";
 
 export default {
   name: "PokemonList",
@@ -53,7 +53,7 @@ export default {
     sortPokemon(pokemon) {
       const attribute = this.sort.map((e) => e.attribute);
       const values = this.sort.map((e) => e.value);
-      const sorted = _.orderBy(pokemon, attribute, values);
+      const sorted = _orderBy(pokemon, attribute, values);
       console.log(sorted.map((ele) => ele.name));
       return sorted;
     },
