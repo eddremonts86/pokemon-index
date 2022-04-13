@@ -1,5 +1,10 @@
 <template>
-  <pokemon :pokemon="pokemon" />
+  <v-skeleton-loader
+    v-if="isLoading"
+    v-bind="attrs"
+    type="card-avatar, article, actions"
+  ></v-skeleton-loader>
+  <pokemon :pokemon="pokemon" v-else />
 </template>
 
 <script>
@@ -14,6 +19,7 @@ export default {
   data() {
     return {
       pokemon: {},
+      isLoading: false,
     };
   },
   computed: {
@@ -26,6 +32,7 @@ export default {
   },
   methods: {
     fetchPokemon() {
+      this.isLoading = true;
       getByAttribute("pokemon", this.pokemonName)
         .then((res) => {
           this.pokemon = res.data;

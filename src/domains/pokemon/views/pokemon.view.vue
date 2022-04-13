@@ -3,6 +3,11 @@
     class="pokemonContainer"
     :style="`--background-color : ${principalTypeColor}`"
   >
+    <v-col cols="12" class="d-flex">
+      <v-spacer></v-spacer>
+      <router-link to="/">Go back</router-link>
+    </v-col>
+
     <v-col
       cols="12"
       class="image-container d-flex align-center justify-space-around"
@@ -51,7 +56,7 @@
                 v-for="(pokemonType, pokemonTypeKey) in stat.data"
                 :key="pokemonTypeKey"
                 :color="pokemonType.color"
-                class="mx-1"
+                class="ma-1"
               >
                 {{ pokemonType.type }}
               </v-chip>

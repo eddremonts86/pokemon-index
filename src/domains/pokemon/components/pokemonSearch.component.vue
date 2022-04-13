@@ -65,7 +65,7 @@ export default {
     search(val) {
       if (this.isLoading) return;
       this.isLoading = true;
-      getByAttribute("pokemon", val.trim())
+      getByAttribute("pokemon", val.trim().toLowerCase())
         .then((res) => {
           this.entries = [res.data];
         })
