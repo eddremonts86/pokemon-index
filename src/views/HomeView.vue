@@ -9,7 +9,7 @@
       <pokemon-pagination />
     </v-col>
     <v-col cols="12" class="ma-0 pa-0">
-      <v-expansion-panels>
+      <v-expansion-panels data-cy="home-expansion-panels">
         <v-expansion-panel v-for="(item, i) in 1" :key="i">
           <v-expansion-panel-header> Filters </v-expansion-panel-header>
           <v-expansion-panel-content>

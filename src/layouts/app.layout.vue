@@ -4,11 +4,13 @@
     <v-navigation-drawer
       v-model="asideMenu"
       app
+      absolute
       temporary
       class="aside-left-nav"
     >
       <asideLeftMenu />
     </v-navigation-drawer>
+
     <v-main>
       <v-container>
         <v-row>
@@ -38,3 +40,8 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+.global-close-btn {
+  position: absolute;
+}
+</style>

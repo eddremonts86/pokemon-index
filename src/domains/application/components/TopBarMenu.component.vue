@@ -1,7 +1,13 @@
 <template>
   <v-app-bar app flat>
     <v-container class="py-0 fill-height">
-      <v-btn icon text @click="$emit('update-asideMenu')" class="mr-10">
+      <v-btn
+        icon
+        text
+        @click="$emit('update-asideMenu')"
+        class="mr-10"
+        data-cy="close-aside-left-nav"
+      >
         <v-avatar color="grey darken-1" size="32">
           <img src="images/pokemon-logo.png" alt="logo.png" />
         </v-avatar>
