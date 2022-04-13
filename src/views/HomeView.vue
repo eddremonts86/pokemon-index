@@ -57,16 +57,11 @@ export default {
   },
   data() {
     return {
-      pokemonPerPage: 10,
+      pokemonPerPage: localStorageHandler.getJsonLocalStore("limit") || 10,
       sort: localStorageHandler.getJsonLocalStore("sort") || [],
-      filter: null,
       favorites: localStorageHandler.getJsonLocalStore("favorites") || [],
+      filter: null,
     };
-  },
-  mounted() {
-    if (localStorageHandler.getJsonLocalStore("limit")) {
-      this.pokemonPerPage = localStorageHandler.getJsonLocalStore("limit");
-    }
   },
   computed: {
     sortByWeight() {

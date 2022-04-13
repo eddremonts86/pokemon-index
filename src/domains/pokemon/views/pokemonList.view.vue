@@ -55,6 +55,9 @@ export default {
         ? this.getPokemon
         : this.sortPokemon(this.getPokemon);
     },
+    test() {
+      return true;
+    },
   },
   mounted() {
     this.fetchPokemon({
