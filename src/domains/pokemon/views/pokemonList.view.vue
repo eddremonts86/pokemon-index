@@ -10,7 +10,11 @@
       :key="key"
       class="d-flex align-stretch"
     >
-      <pokemon-card :pokemon="pokemon" />
+      <pokemon-card
+        :pokemon="pokemon"
+        :favorites="favorites"
+        @update:favorites="updateFavorites"
+      />
     </v-col>
   </v-row>
 </template>
@@ -38,6 +42,10 @@ export default {
     filter: {
       type: String,
       default: null,
+    },
+    favorites: {
+      type: Array,
+      required: true,
     },
   },
   computed: {
@@ -77,6 +85,9 @@ export default {
             ability.name.toLowerCase().includes(this.filter.toLowerCase())
           )
       );
+    },
+    updateFavorites(ele) {
+      this.$emit("update:favorites", ele);
     },
   },
   watch: {

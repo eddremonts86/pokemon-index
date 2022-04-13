@@ -1,7 +1,6 @@
 <template>
   <v-skeleton-loader
     v-if="isLoading"
-    v-bind="attrs"
     type="card-avatar, article, actions"
   ></v-skeleton-loader>
   <pokemon :pokemon="pokemon" v-else />

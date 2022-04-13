@@ -5,7 +5,7 @@
   >
     <v-col cols="12" class="d-flex">
       <v-spacer></v-spacer>
-      <router-link to="/">Go back</router-link>
+      <router-link to="/">Back to home</router-link>
     </v-col>
 
     <v-col

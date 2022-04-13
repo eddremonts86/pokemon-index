@@ -32,6 +32,8 @@
         :pokemon-per-page="pokemonPerPage"
         :sort="sort"
         :filter="filter"
+        :favorites="favorites"
+        @update:favorites="updateFavorites"
       />
     </v-col>
     <v-col cols="12" class="radio-xl pokemon-header d-flex justify-end">
@@ -58,6 +60,7 @@ export default {
       pokemonPerPage: 10,
       sort: localStorageHandler.getJsonLocalStore("sort") || [],
       filter: null,
+      favorites: localStorageHandler.getJsonLocalStore("favorites") || [],
     };
   },
   computed: {
@@ -81,6 +84,10 @@ export default {
     },
     updateFilter(filter) {
       this.filter = filter;
+    },
+    updateFavorites(favorites) {
+      localStorageHandler.setJsonLocalStore("favorites", favorites);
+      this.favorites = favorites;
     },
   },
 };

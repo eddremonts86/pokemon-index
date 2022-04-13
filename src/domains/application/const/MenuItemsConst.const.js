@@ -4,4 +4,9 @@ export const MenuItemsConst = [
     icon: "mdi-home",
     routeName: "home",
   },
+  {
+    text: "Favorite",
+    icon: "mdi-heart",
+    routeName: "favorite",
+  },
 ];

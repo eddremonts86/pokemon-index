@@ -25,6 +25,16 @@ const routes = [
     },
   },
   {
+    path: "/favorite",
+    name: "favorite",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/FavoritesView.vue"),
+    meta: {
+      layout: "applicationLayout",
+      title: "Favorite Pokemon",
+    },
+  },
+  {
     path: "*",
     name: "not-found",
     component: () =>

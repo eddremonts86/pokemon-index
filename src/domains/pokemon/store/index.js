@@ -1,6 +1,7 @@
 import { getByFilter, getByUrl } from "@/helpers/axiosConnection";
 import localStorageHandler from "@/helpers/localStorageHandler";
 import { fetchPokemonInformation, getParmFromUrl } from "../utils/index";
+import { globalEnv } from "@/helpers/global.env";
 
 const pokemonStore = {
   state: {
@@ -59,6 +60,18 @@ const pokemonStore = {
         commit("setPokemon", pokemon);
         commit("setPokemonPreviousPageUrl", previous);
         commit("setPokemonNextPageUrl", next);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async fetchFavoritePokemon({ commit }, pokemon) {
+      const { urlBase } = globalEnv;
+      const urls = pokemon.map((pokemon) => {
+        return { url: `${urlBase + "pokemon"}/${pokemon}` };
+      });
+      try {
+        const favorites = await fetchPokemonInformation(urls);
+        commit("setPokemon", favorites);
       } catch (error) {
         console.log(error);
       }
