@@ -15,8 +15,10 @@
       @click="goTo(pokemon.name)"
       class="cursor-pointer"
     ></v-img>
-    <v-card-title>{{ poke.name }}</v-card-title>
-    <v-card-subtitle>
+    <v-card-title
+      ><h2 class="text-capitalize">{{ poke.name }}</h2></v-card-title
+    >
+    <v-card-subtitle class="mt-1">
       <span> <b>Height:</b> {{ poke.height }} </span> <br />
       <span><b>Weight:</b> {{ poke.weight }}</span>
     </v-card-subtitle>

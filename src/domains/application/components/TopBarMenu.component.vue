@@ -2,7 +2,9 @@
   <v-app-bar app flat>
     <v-container class="py-0 fill-height">
       <v-btn icon text @click="$emit('update-asideMenu')" class="mr-10">
-        <v-avatar color="grey darken-1" size="32"></v-avatar>
+        <v-avatar color="grey darken-1" size="32">
+          <img src="images/pokemon-logo.png" alt="logo.png" />
+        </v-avatar>
       </v-btn>
       <template v-for="link in menuItems">
         <router-link
@@ -15,7 +17,7 @@
         </router-link>
       </template>
       <v-spacer></v-spacer>
-      <v-responsive>
+      <v-responsive max-width="300">
         <pokemon-search />
       </v-responsive>
     </v-container>

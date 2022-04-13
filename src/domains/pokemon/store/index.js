@@ -1,5 +1,6 @@
 import { getByFilter, getByUrl } from "@/helpers/axiosConnection";
-import { fetchPokemonInformation } from "../utils/index";
+import localStorageHandler from "@/helpers/localStorageHandler";
+import { fetchPokemonInformation, getParmFromUrl } from "../utils/index";
 
 const pokemonStore = {
   state: {
@@ -26,6 +27,8 @@ const pokemonStore = {
   actions: {
     async fetchPokemon({ commit }, { offset, limit }) {
       const filters = `offset=${offset}&limit=${limit}`;
+      localStorageHandler.setJsonLocalStore("offset", offset);
+      localStorageHandler.setJsonLocalStore("limit", limit);
       try {
         commit("resetStore");
         const response = await getByFilter("pokemon", filters);
@@ -39,6 +42,15 @@ const pokemonStore = {
       }
     },
     async fetchPokemonByPage({ commit }, pageUrl) {
+      localStorageHandler.setJsonLocalStore(
+        "offset",
+        getParmFromUrl(pageUrl, "offset")
+      );
+      localStorageHandler.setJsonLocalStore(
+        "limit",
+        getParmFromUrl(pageUrl, "limit")
+      );
+
       try {
         commit("resetStore");
         const response = await getByUrl(pageUrl);
@@ -53,9 +65,15 @@ const pokemonStore = {
     },
   },
   getters: {
-    getPokemon: (state) => state.pokemon,
-    getPokemonNextPageUrl: (state) => state.pokemonNextPageUrl,
-    getPokemonPreviousPageUrl: (state) => state.pokemonPreviousPageUrl,
+    getPokemon(state) {
+      return state.pokemon;
+    },
+    getPokemonNextPageUrl(state) {
+      return state.pokemonNextPageUrl;
+    },
+    getPokemonPreviousPageUrl(state) {
+      return state.pokemonPreviousPageUrl;
+    },
   },
 };
 export default pokemonStore;

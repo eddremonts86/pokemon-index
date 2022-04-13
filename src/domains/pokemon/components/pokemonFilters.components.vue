@@ -88,14 +88,26 @@ export default {
       type: Number,
       default: 10,
     },
+    byName: {
+      type: String,
+      default: null,
+    },
+    byHeight: {
+      type: String,
+      default: null,
+    },
+    byWeight: {
+      type: String,
+      default: null,
+    },
   },
   data() {
     return {
       pokemonAmount: [10, 20, 50],
       pokemonPerPage: this.elementsPerPage,
-      sortByName: [],
-      sortByHeight: [],
-      sortByWeight: [],
+      sortByName: this.byName,
+      sortByHeight: this.byHeight,
+      sortByWeight: this.byWeight,
       filter: null,
     };
   },

@@ -1,8 +1,10 @@
 <template>
   <div class="d-flex flex-column">
     <div class="pa-4">
-      <h2>Pokemon World</h2>
-      <p class="small">The most complete list of Pokemon</p>
+      <h2>
+        <v-icon color="red" class="mr-1">mdi-pokeball </v-icon>Pokemon World
+      </h2>
+      <p class="small my-2">The most complete list of Pokemon</p>
     </div>
 
     <v-list>

@@ -7,20 +7,18 @@
       <div>
         <v-img :src="image" :lazy-src="imgDefault" class="image"></v-img>
       </div>
-      <h1>{{ pokemon.name }}</h1>
+      <h1 class="text-capitalize">{{ pokemon.name }}</h1>
     </v-col>
 
     <v-col cols="12" md="4">
       <h3 class="py-3">General Information:</h3>
-      <!--<p>Species : {{ pokemon.species.name }}</p>-->
       <p>Base experience : {{ pokemon.base_experience }}</p>
       <p>Weight : {{ pokemon.weight }}</p>
       <p>Height : {{ pokemon.height }}</p>
       <p>Order : {{ pokemon.order }}</p>
     </v-col>
-    <v-col cols="12" md="8">
+    <v-col cols="12" md="8" class="overflowTable">
       <h3 class="py-3">Pokemon Stats:</h3>
-
       <table>
         <thead>
           <td v-for="(stat, statsKey) in stats" :key="statsKey">
@@ -149,7 +147,36 @@ export default {
     width: 300px;
     height: auto;
   }
+  @media screen and (max-width: 1024px) {
+    display: flex;
+    margin-bottom: 2rem;
+    text-align: center;
+    h1 {
+      font-size: 4rem;
+    }
+    .image {
+      width: 200px;
+      height: auto;
+    }
+  }
+  @media screen and (max-width: 600px) {
+    display: flex;
+    margin-bottom: 2rem;
+    text-align: center;
+    display: inline-block;
+    h1 {
+      font-size: 3rem;
+    }
+    .image {
+      width: 100px;
+      height: auto;
+    }
+  }
 }
+.overflowTable {
+  overflow-y: auto;
+}
+
 thead {
   background-color: #2c31348f;
   color: #fff;

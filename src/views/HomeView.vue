@@ -8,12 +8,25 @@
       <v-spacer></v-spacer>
       <pokemon-pagination />
     </v-col>
-    <pokemon-filters
-      :elementsPerPage="pokemonPerPage"
-      @update:pokemon-per-page="updatePokemonPerPage"
-      @update:sort="updateSort"
-      @update:filter="updateFilter"
-    />
+    <v-col cols="12" class="ma-0 pa-0">
+      <v-expansion-panels>
+        <v-expansion-panel v-for="(item, i) in 1" :key="i">
+          <v-expansion-panel-header> Filters </v-expansion-panel-header>
+          <v-expansion-panel-content>
+            <pokemon-filters
+              :elementsPerPage="pokemonPerPage"
+              :byName="byName"
+              :byHeight="byHeight"
+              :byWeight="byWeight"
+              @update:pokemon-per-page="updatePokemonPerPage"
+              @update:sort="updateSort"
+              @update:filter="updateFilter"
+            />
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+      </v-expansion-panels>
+    </v-col>
+
     <v-col cols="12">
       <pokemonList
         :pokemon-per-page="pokemonPerPage"
@@ -28,6 +41,7 @@
 </template>
 <script>
 import { pokemonList } from "@/domains/pokemon/views";
+import localStorageHandler from "@/helpers/localStorageHandler";
 import {
   pokemonPagination,
   pokemonFilters,
@@ -42,15 +56,27 @@ export default {
   data() {
     return {
       pokemonPerPage: 10,
-      sort: [],
+      sort: localStorageHandler.getJsonLocalStore("sort") || [],
       filter: null,
     };
+  },
+  computed: {
+    byWeight() {
+      return this.sort.find((s) => s.attribute === "weight")?.value;
+    },
+    byHeight() {
+      return this.sort.find((s) => s.attribute === "height")?.value;
+    },
+    byName() {
+      return this.sort.find((s) => s.attribute === "name")?.value;
+    },
   },
   methods: {
     updatePokemonPerPage(pokemonPerPage) {
       this.pokemonPerPage = pokemonPerPage;
     },
     updateSort(sort) {
+      localStorageHandler.setJsonLocalStore("sort", sort);
       this.sort = sort;
     },
     updateFilter(filter) {

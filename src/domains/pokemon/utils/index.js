@@ -1,2 +1,3 @@
 import { fetchPokemonInformation } from "./fetchPokemonInformation";
-export { fetchPokemonInformation };
+import { getParmFromUrl } from "./getParmFromUrl";
+export { fetchPokemonInformation, getParmFromUrl };

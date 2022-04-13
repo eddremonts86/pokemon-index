@@ -18,6 +18,7 @@
 import { pokemonCard } from "../components";
 import { mapActions, mapGetters } from "vuex";
 import { orderBy as _orderBy } from "lodash";
+import localStorageHandler from "@/helpers/localStorageHandler";
 
 export default {
   name: "PokemonList",
@@ -48,8 +49,9 @@ export default {
   },
   mounted() {
     this.fetchPokemon({
-      limit: this.pokemonPerPage,
-      offset: 0,
+      limit:
+        localStorageHandler.getJsonLocalStore("limit") || this.pokemonPerPage,
+      offset: localStorageHandler.getJsonLocalStore("offset") || 0,
     });
   },
   methods: {
