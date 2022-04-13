@@ -15,9 +15,9 @@
           <v-expansion-panel-content>
             <pokemon-filters
               :elementsPerPage="pokemonPerPage"
-              :byName="byName"
-              :byHeight="byHeight"
-              :byWeight="byWeight"
+              :byName="sortByName"
+              :byHeight="sortByHeight"
+              :byWeight="sortByWeight"
               @update:pokemon-per-page="updatePokemonPerPage"
               @update:sort="updateSort"
               @update:filter="updateFilter"
@@ -61,13 +61,13 @@ export default {
     };
   },
   computed: {
-    byWeight() {
+    sortByWeight() {
       return this.sort.find((s) => s.attribute === "weight")?.value;
     },
-    byHeight() {
+    sortByHeight() {
       return this.sort.find((s) => s.attribute === "height")?.value;
     },
-    byName() {
+    sortByName() {
       return this.sort.find((s) => s.attribute === "name")?.value;
     },
   },

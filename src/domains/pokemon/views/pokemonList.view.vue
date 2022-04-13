@@ -8,6 +8,7 @@
       xl="2"
       v-for="(pokemon, key) in pokemonSorted"
       :key="key"
+      class="d-flex align-stretch"
     >
       <pokemon-card :pokemon="pokemon" />
     </v-col>
