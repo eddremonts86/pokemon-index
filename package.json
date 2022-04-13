@@ -80,10 +80,13 @@
     "preset": "@vue/cli-plugin-unit-jest"
   },
   "gitHooks": {
-    "pre-commit": ["lint-staged", "npm run test:unit"]
+    "pre-commit": ["lint-staged", "test:unit"]
   },
   "lint-staged": {
     "*.{js,jsx,vue}": "vue-cli-service lint"
+  },
+  "test:unit": {
+    "*.{js,jsx,vue}": "vue-cli-service test:unit"
   }
   
 }
