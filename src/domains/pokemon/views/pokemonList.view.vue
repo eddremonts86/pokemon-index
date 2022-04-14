@@ -61,8 +61,7 @@ export default {
   },
   mounted() {
     this.fetchPokemon({
-      limit:
-        localStorageHandler.getJsonLocalStore("limit") || this.pokemonPerPage,
+      limit: this.pokemonPerPage,
       offset: localStorageHandler.getJsonLocalStore("offset") || 0,
     });
   },

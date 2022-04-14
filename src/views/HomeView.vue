@@ -63,6 +63,11 @@ export default {
       favorites: localStorageHandler.getJsonLocalStore("favorites") || [],
     };
   },
+  mounted() {
+    if (localStorageHandler.getJsonLocalStore("limit")) {
+      this.pokemonPerPage = localStorageHandler.getJsonLocalStore("limit");
+    }
+  },
   computed: {
     sortByWeight() {
       return this.sort.find((s) => s.attribute === "weight")?.value;

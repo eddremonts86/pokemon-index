@@ -66,7 +66,7 @@
           borderless
           color="primary accent-3"
           @change="updateSort"
-        >
+          >{{ sortByWeight }}
           <v-btn value="asc" class="px-6">
             <v-icon right>mdi-sort-bool-descending</v-icon>
           </v-btn>
@@ -116,15 +116,15 @@ export default {
       let sort = [
         {
           attribute: "name",
-          value: this.sortByName?.length > 0 ? this.sortByName : null,
+          value: this.sortByName || null,
         },
         {
           attribute: "height",
-          value: this.sortByHeight?.length > 0 ? this.sortByHeight : null,
+          value: this.sortByHeight || null,
         },
         {
           attribute: "weight",
-          value: this.sortByWeight?.length > 0 ? this.sortByWeight : null,
+          value: this.sortByWeight || null,
         },
       ].filter((s) => s.value);
       this.$emit("update:sort", sort);
