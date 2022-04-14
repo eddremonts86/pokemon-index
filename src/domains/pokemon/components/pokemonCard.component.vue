@@ -23,26 +23,25 @@
       </v-btn>
     </v-card-title>
     <v-card-subtitle class="mt-1">
-      <v-chip label class="my-1 mr-1" color="grey darken-4">
-        <v-icon class="mx-2">mdi-human-male-height-variant </v-icon>
-        <b>Height:</b> <span class="mx-2">{{ poke.height }}</span>
-      </v-chip>
-      <v-chip label class="my-1 mr-1" color="grey darken-4">
-        <v-icon class="mx-2">mdi-weight-kilogram </v-icon>
-        <b>Weight:</b> <span class="mx-2">{{ poke.weight }}</span>
-      </v-chip>
+      <sys-chip
+        label
+        :items="height"
+        color="grey darken-4"
+        hasIcon
+        icon="mdi-human-male-height-variant"
+      />
+      <sys-chip
+        label
+        :items="weight"
+        color="grey darken-4"
+        hasIcon
+        icon="mdi-weight-kilogram"
+      />
     </v-card-subtitle>
     <v-divider class="mx-4"></v-divider>
     <v-card-title>Abilities</v-card-title>
     <v-card-text class="abilitiesContainer">
-      <v-chip
-        class="ma-1"
-        color="red darken-4"
-        v-for="(ability, abilityKey) in poke.abilities"
-        :key="abilityKey"
-      >
-        {{ ability.ability.name }}
-      </v-chip>
+      <sys-chip :items="abilities" color="red darken-4" />
     </v-card-text>
     <v-card-actions class="pa-5 ma-0 grey darken-4">
       <v-btn color="primary" block @click="goTo(pokemon.name)">
@@ -91,6 +90,15 @@ export default {
     },
     favIcon() {
       return this.isFavorite ? "mdi-heart" : "mdi-heart-outline";
+    },
+    abilities() {
+      return this.poke.abilities.map((ability) => ability.ability.name);
+    },
+    weight() {
+      return [`Weight: ${this.poke.weight}`];
+    },
+    height() {
+      return [`Height: ${this.poke.height}`];
     },
   },
   methods: {

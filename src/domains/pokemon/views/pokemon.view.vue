@@ -17,88 +17,22 @@
       </div>
       <h1 class="text-capitalize">{{ pokemon.name }}</h1>
     </v-col>
+
     <v-col cols="12" md="4" class="generalInformation">
       <h3 class="py-3">General Information:</h3>
-      <div>
-        <v-icon class="mx-2" large>mdi-book-open-variant</v-icon>
-        <p class="header">Base experience</p>
-        <p class="sub-header">{{ pokemon.base_experience }}</p>
-      </div>
-      <div>
-        <v-icon class="mx-2" large>mdi-order-numeric-descending </v-icon>
-        <p class="header">Order</p>
-        <p class="sub-header">{{ pokemon.order }}</p>
-      </div>
-      <div>
-        <v-icon class="mx-2" large>mdi-weight-kilogram </v-icon>
-        <p class="header">Weight</p>
-        <p class="sub-header">{{ pokemon.weight }}</p>
-      </div>
-      <div>
-        <v-icon class="mx-2" large>mdi-human-male-height-variant </v-icon>
-        <p class="header">Height</p>
-        <p class="sub-header">{{ pokemon.height }}</p>
-      </div>
+      <pokemon-general-information :pokemon="generalInfo" />
     </v-col>
     <v-col cols="12" md="8" class="overflowTable">
       <h3 class="py-3">Pokemon Stats:</h3>
-      <table>
-        <thead>
-          <td v-for="(stat, statsKey) in stats" :key="statsKey">
-            <span>{{ stat.stat }}</span>
-          </td>
-        </thead>
-        <tr>
-          <td v-for="(stat, statsKey) in stats" :key="statsKey">
-            <span v-if="!stat.data">{{ stat.score }}</span>
-            <span v-if="stat.data">
-              <v-chip
-                v-for="(pokemonType, pokemonTypeKey) in stat.data"
-                :key="pokemonTypeKey"
-                :color="pokemonType.color"
-                class="ma-1"
-              >
-                {{ pokemonType.type }}
-              </v-chip>
-            </span>
-          </td>
-        </tr>
-      </table>
+      <pokemonStatsTable :stats="stats" />
     </v-col>
     <v-col cols="12" class="content">
       <h3 class="py-3">Abilities :</h3>
-      <p>
-        <v-chip
-          class="mx-2"
-          color="red darken-4"
-          v-for="(pokemonAbility, pokemonAbilityKey) in pokemon.abilities"
-          :key="pokemonAbilityKey"
-        >
-          {{ pokemonAbility.ability.name }}
-        </v-chip>
-      </p>
+      <sys-chip :items="abilities" color="red darken-4" />
       <h3 class="py-3">Games indices:</h3>
-      <p>
-        <v-chip
-          class="ma-1"
-          color="purple darken-4"
-          v-for="(pokemonGames, pokemonGamesKey) in pokemon.game_indices"
-          :key="pokemonGamesKey"
-        >
-          {{ pokemonGames.version.name }}
-        </v-chip>
-      </p>
+      <sys-chip :items="games" color="purple darken-4" />
       <h3 class="py-3">Moves:</h3>
-      <p>
-        <v-chip
-          class="ma-1"
-          color="indigo darken-4"
-          v-for="(pokemonMove, pokemonMoveKey) in pokemon.moves"
-          :key="pokemonMoveKey"
-        >
-          {{ pokemonMove.move.name }}
-        </v-chip>
-      </p>
+      <sys-chip :items="moves" color="indigo darken-4" />
     </v-col>
   </v-row>
 </template>
@@ -106,6 +40,10 @@
 <script>
 const imgDefaultUrl = "/images/loading.gif";
 import { pokemonTypesColor } from "@/domains/pokemon/const";
+import {
+  pokemonGeneralInformation,
+  pokemonStatsTable,
+} from "@/domains/pokemon/components";
 export default {
   name: "PokemonView",
   props: {
@@ -113,6 +51,10 @@ export default {
       type: Object,
       required: true,
     },
+  },
+  components: {
+    pokemonStatsTable,
+    pokemonGeneralInformation,
   },
   computed: {
     image() {
@@ -157,6 +99,31 @@ export default {
         { score: totalScore, stat: "Total score", type: "stat", data: null },
       ];
     },
+    hasPokemonInformation() {
+      return Object.keys(this.pokemon).length > 0;
+    },
+    games() {
+      if (!this.hasPokemonInformation) return [];
+      return this.pokemon?.game_indices.map(({ version }) => version.name);
+    },
+    moves() {
+      if (!this.hasPokemonInformation) return [];
+      return this.pokemon?.moves.map(({ move }) => move.name);
+    },
+    abilities() {
+      if (!this.hasPokemonInformation) return [];
+      return this.pokemon?.abilities.map(({ ability }) => ability.name);
+    },
+    generalInfo() {
+      if (!this.hasPokemonInformation) return {};
+      const { weight, base_experience, order, height } = this.pokemon;
+      return {
+        weight,
+        base_experience,
+        order,
+        height,
+      };
+    },
   },
   methods: {
     colors(type) {
@@ -172,26 +139,6 @@ export default {
   .generalInformation {
     h3 {
       display: block;
-    }
-    > div {
-      background-color: var(--background-color);
-      display: inline-block;
-      margin: 5px;
-      padding: 10px;
-      text-align: center;
-      width: 40%;
-      border-radius: 10px;
-      .header {
-        font-size: 1.5em;
-        padding: 0;
-        margin: 0;
-      }
-      .sub-header {
-        font-size: 3.5em;
-        font-weight: 900;
-        padding: 0;
-        margin: 0;
-      }
     }
   }
   .image-container {
@@ -232,19 +179,6 @@ export default {
   }
   .overflowTable {
     overflow-y: auto;
-  }
-  thead {
-    background-color: var(--background-color);
-    color: #fff;
-    td {
-      padding: 0.5rem 1rem;
-      text-transform: capitalize;
-    }
-  }
-  tr {
-    td {
-      padding: 0.7rem 1rem;
-    }
   }
 }
 </style>
