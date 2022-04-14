@@ -127,7 +127,7 @@ export default {
   },
   methods: {
     colors(type) {
-      return pokemonTypesColor[type];
+      return pokemonTypesColor[type] || "#C03028";
     },
   },
 };

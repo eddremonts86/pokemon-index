@@ -66,7 +66,7 @@
           borderless
           color="primary accent-3"
           @change="updateSort"
-          >{{ sortByWeight }}
+        >
           <v-btn value="asc" class="px-6">
             <v-icon right>mdi-sort-bool-descending</v-icon>
           </v-btn>

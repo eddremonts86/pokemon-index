@@ -22,7 +22,7 @@
 <script>
 import { pokemonCard } from "../components";
 import { mapActions, mapGetters } from "vuex";
-import { orderBy as _orderBy } from "lodash";
+import { orderBy as $_orderBy } from "lodash";
 import localStorageHandler from "@/helpers/localStorageHandler";
 
 export default {
@@ -55,9 +55,6 @@ export default {
         ? this.getPokemon
         : this.sortPokemon(this.getPokemon);
     },
-    test() {
-      return true;
-    },
   },
   mounted() {
     this.fetchPokemon({
@@ -70,7 +67,7 @@ export default {
     sortPokemon(pokemon) {
       const attribute = this.sort.map((e) => e.attribute);
       const values = this.sort.map((e) => e.value);
-      const sorted = _orderBy(pokemon, attribute, values);
+      const sorted = $_orderBy(pokemon, attribute, values);
       if (this.filter) {
         return this.filterPokemon(sorted);
       }
