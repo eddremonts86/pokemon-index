@@ -1,25 +1,28 @@
 <template>
-  <div>
-    <h1 class="ma-15">Favorites</h1>
-    <v-row>
-      <v-col
-        cols="12"
-        sm="6"
-        md="4"
-        lg="3"
-        xl="2"
-        v-for="(pokemon, key) in pokemonList"
-        :key="key"
-        class="d-flex align-stretch"
-      >
-        <pokemon-card
-          :pokemon="pokemon"
-          :favorites="favorites"
-          @update:favorites="updateFavorites"
-        />
-      </v-col>
-    </v-row>
-  </div>
+  <v-row>
+    <v-col
+      cols="12"
+      class="pa-4 mt-5 radio-xl d-flex justify-space-between align-center"
+    >
+      <h1>Favorites</h1>
+    </v-col>
+    <v-col
+      cols="12"
+      sm="6"
+      md="4"
+      lg="3"
+      xl="2"
+      v-for="(pokemon, key) in pokemonList"
+      :key="key"
+      class="d-flex align-stretch"
+    >
+      <pokemon-card
+        :pokemon="pokemon"
+        :favorites="favorites"
+        @update:favorites="updateFavorites"
+      />
+    </v-col>
+  </v-row>
 </template>
 
 <script>

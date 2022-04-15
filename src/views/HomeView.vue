@@ -2,9 +2,9 @@
   <v-row class="about">
     <v-col
       cols="12"
-      class="pa-4 my-5 radio-xl pokemon-header d-flex justify-space-between align-center"
+      class="pa-4 mt-5 radio-xl d-flex justify-space-between align-center"
     >
-      <h2>Pokemon</h2>
+      <h1>Pokemon Index</h1>
       <v-spacer></v-spacer>
       <pokemon-pagination />
     </v-col>
@@ -26,7 +26,6 @@
         </v-expansion-panel>
       </v-expansion-panels>
     </v-col>
-
     <v-col cols="12">
       <pokemonList
         :pokemon-per-page="pokemonPerPage"
@@ -95,8 +94,5 @@ export default {
 <style scoped>
 .radio-xl {
   border-radius: 10px;
-}
-.pokemon-header {
-  background-color: #2c31348f !important;
 }
 </style>

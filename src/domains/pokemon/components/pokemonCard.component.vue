@@ -1,5 +1,5 @@
 <template>
-  <v-card :loading="loading" class="mx-auto my-12">
+  <v-card :loading="loading" class="mx-auto my-12" elevation="2">
     <template slot="progress">
       <v-progress-linear
         color="deep-purple"
@@ -7,7 +7,6 @@
         indeterminate
       ></v-progress-linear>
     </template>
-
     <v-img
       height="250"
       :src="poke.img"
@@ -15,12 +14,12 @@
       @click="goTo(pokemon.name)"
       class="cursor-pointer"
     ></v-img>
+    <v-btn color="red" icon @click="favorite()" class="topLeft">
+      <v-icon>{{ favIcon }}</v-icon>
+    </v-btn>
     <v-card-title
       ><h2 class="text-capitalize">{{ poke.name }}</h2>
       <v-spacer />
-      <v-btn color="red" icon @click="favorite()">
-        <v-icon>{{ favIcon }}</v-icon>
-      </v-btn>
     </v-card-title>
     <v-card-subtitle class="mt-1">
       <sys-chip
@@ -123,5 +122,10 @@ export default {
 }
 .abilitiesContainer {
   min-height: 100px;
+}
+.topLeft {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 </style>
