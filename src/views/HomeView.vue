@@ -56,7 +56,7 @@ export default {
   },
   data() {
     return {
-      pokemonPerPage: localStorageHandler.getJsonLocalStore("limit") || 10,
+      pokemonPerPage: +localStorageHandler.getJsonLocalStore("limit") || 10,
       sort: localStorageHandler.getJsonLocalStore("sort") || [],
       favorites: localStorageHandler.getJsonLocalStore("favorites") || [],
       filter: null,
