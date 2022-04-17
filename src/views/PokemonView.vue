@@ -11,9 +11,9 @@
 <script>
 import { getByAttribute } from "@/helpers/axiosConnection";
 import { pokemon } from "@/domains/pokemon/views";
-
+import { mapMutations } from "vuex";
 export default {
-  name: "PokemonSearch",
+  name: "PokemonView",
   components: {
     pokemon,
   },
@@ -35,6 +35,7 @@ export default {
     this.fetchPokemon();
   },
   methods: {
+    ...mapMutations("errorsStore", ["setSystemErrors"]),
     fetchPokemon() {
       this.isLoading = true;
       getByAttribute("pokemon", this.pokemonName)
@@ -47,14 +48,10 @@ export default {
         .finally(() => (this.isLoading = false));
     },
     displayErrors() {
-      this.$store.commit(
-        "errorsStore/setSystemErrors",
-        {
-          type: "error",
-          text: "Sorry. We haven't found a pokemon with same name",
-        },
-        { root: true }
-      );
+      this.setSystemErrors({
+        type: "error",
+        text: "Sorry. We haven't found a pokemon with same name",
+      });
       setTimeout(() => {
         this.$router.push({ name: "home" });
       }, 3000);
