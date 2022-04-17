@@ -41,7 +41,7 @@ export default {
     pokemonCard,
   },
   computed: {
-    ...mapGetters(["getPokemon"]),
+    ...mapGetters("pokemonStore", ["getPokemon"]),
     pokemonList() {
       return this.getPokemon;
     },
@@ -50,7 +50,7 @@ export default {
     this.fetchFavoritePokemon(this.favorites);
   },
   methods: {
-    ...mapActions(["fetchFavoritePokemon"]),
+    ...mapActions("pokemonStore", ["fetchFavoritePokemon"]),
     updateFavorites(favorites) {
       localStorageHandler.setJsonLocalStore("favorites", favorites);
       this.favorites = favorites;

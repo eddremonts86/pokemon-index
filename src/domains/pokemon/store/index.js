@@ -4,6 +4,7 @@ import { fetchPokemonInformation, getParmFromUrl } from "../utils/index";
 import { globalEnv } from "@/helpers/global.env";
 
 const pokemonStore = {
+  namespaced: true,
   state: {
     pokemon: [],
     pokemonNextPageUrl: null,
@@ -39,7 +40,11 @@ const pokemonStore = {
         commit("setPokemonPreviousPageUrl", previous);
         commit("setPokemonNextPageUrl", next);
       } catch (error) {
-        console.log(error);
+        commit(
+          "errorsStore/setSystemErrors",
+          { type: "error", text: "Error getting pokemon list", error },
+          { root: true }
+        );
       }
     },
     async fetchPokemonByPage({ commit }, pageUrl) {
@@ -61,7 +66,11 @@ const pokemonStore = {
         commit("setPokemonPreviousPageUrl", previous);
         commit("setPokemonNextPageUrl", next);
       } catch (error) {
-        console.log(error);
+        commit(
+          "errorsStore/setSystemErrors",
+          { type: "error", text: "Error getting pokemon list", error },
+          { root: true }
+        );
       }
     },
     async fetchFavoritePokemon({ commit }, pokemon) {
@@ -73,7 +82,11 @@ const pokemonStore = {
         const favorites = await fetchPokemonInformation(urls);
         commit("setPokemon", favorites);
       } catch (error) {
-        console.log(error);
+        commit(
+          "errorsStore/setSystemErrors",
+          { type: "error", text: "Error getting pokemon favorites", error },
+          { root: true }
+        );
       }
     },
   },

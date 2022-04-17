@@ -49,7 +49,7 @@ export default {
     },
   },
   computed: {
-    ...mapGetters(["getPokemon"]),
+    ...mapGetters("pokemonStore", ["getPokemon"]),
     pokemonSorted() {
       return this.sort === null
         ? this.getPokemon
@@ -66,7 +66,7 @@ export default {
     });
   },
   methods: {
-    ...mapActions(["fetchPokemon"]),
+    ...mapActions("pokemonStore", ["fetchPokemon"]),
     sortPokemon(pokemon) {
       const attribute = this.sort.map((e) => e.attribute);
       const values = this.sort.map((e) => e.value);

@@ -44,7 +44,10 @@ import { mapActions, mapGetters } from "vuex";
 export default {
   name: "pokemonPagination",
   computed: {
-    ...mapGetters(["getPokemonNextPageUrl", "getPokemonPreviousPageUrl"]),
+    ...mapGetters("pokemonStore", [
+      "getPokemonNextPageUrl",
+      "getPokemonPreviousPageUrl",
+    ]),
     hasPreviousPage() {
       return this.getPokemonPreviousPageUrl === null;
     },
@@ -53,7 +56,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions(["fetchPokemonByPage"]),
+    ...mapActions("pokemonStore", ["fetchPokemonByPage"]),
     nextPage() {
       this.fetchPokemonByPage(this.getPokemonNextPageUrl);
     },
