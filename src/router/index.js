@@ -8,7 +8,7 @@ const routes = [
     path: "/",
     name: "home",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/HomeView.vue"),
+      import(/* webpackChunkName: "Home" */ "../views/HomeView.vue"),
     meta: {
       layout: "applicationLayout",
       title: "Home Page",
@@ -18,7 +18,7 @@ const routes = [
     path: "/pokemon",
     name: "pokemon",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/PokemonView.vue"),
+      import(/* webpackChunkName: "Pokemon" */ "../views/PokemonView.vue"),
     meta: {
       layout: "applicationLayout",
       title: "About Pokemon",
@@ -28,7 +28,7 @@ const routes = [
     path: "/favorite",
     name: "favorite",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/FavoritesView.vue"),
+      import(/* webpackChunkName: "favorite" */ "../views/FavoritesView.vue"),
     meta: {
       layout: "applicationLayout",
       title: "Favorite Pokemon",
@@ -38,7 +38,7 @@ const routes = [
     path: "*",
     name: "not-found",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/NotFoundView.vue"),
+      import(/* webpackChunkName: "NotFound" */ "../views/NotFoundView.vue"),
     meta: {
       layout: "defaultLayout",
       title: "Page not found",
